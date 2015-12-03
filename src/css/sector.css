@@ -1,0 +1,61 @@
+$activeColor: #FFDC00;
+
+@define-extend sector {
+  transition: fill 200ms;
+  cursor: pointer;
+}
+
+@define-extend sectorXX {
+  stroke: white;
+  stroke-width: 2;
+}
+
+@define-extend activeSector {
+  fill: $activeColor;
+}
+
+.x1Even {
+  @extend sector;
+  fill: black;
+  &:hover {
+    @extend activeSector;
+  }
+}
+
+.x1Odd {
+  @extend sector;
+  fill: white;
+  &:hover {
+    @extend activeSector;
+  }
+}
+
+.xxEven {
+  @extend sector;
+  @extend sectorXX;
+  fill: red;
+  &:hover {
+    @extend activeSector;
+  }
+}
+
+.xxOdd {
+  @extend sector;
+  @extend sectorXX;
+  fill: green;
+  &:hover {
+    @extend activeSector;
+  }
+}
+
+.point {
+  dominant-baseline: central;
+  text-anchor: middle;
+  font-size: 20;
+  font-family: 'Arial';
+  fill: white;
+}
+
+.board {
+  fill: black;
+}
