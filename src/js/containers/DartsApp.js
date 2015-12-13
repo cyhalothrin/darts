@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { throwDart } from '../actions/actions';
+import { throwDart, undo, startNewGame } from '../actions/actions';
 import Dartboard from '../components/Dartboard';
 import PointsBoard from '../components/PointsBoard';
 import grid from '../../css/grid.css';
+import ControlPanel from '../components/ControlPanel';
 
 class DartsApp extends Component {
   render() {
@@ -15,8 +16,9 @@ class DartsApp extends Component {
           <Dartboard onThrowDart={(points) => dispatch(throwDart(points))} />
         </div>
         <div className={grid.col2}>
-          <PointsBoard points={this.props.points} player={this.props.player}/>
+          <PointsBoard points={this.props.points} player={this.props.player} />
         </div>
+        <ControlPanel undo={() => dispatch(undo())} startNewGame={() => dispatch(startNewGame())} />
       </div>
     );
   }

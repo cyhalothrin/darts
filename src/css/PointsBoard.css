@@ -21,13 +21,13 @@
 .header {
   border-bottom: 3px solid #ddd;
 }
+
 .header, .sum {
   .cell {
     line-height: 26px;
     height: 26px;
   }
 }
-
 
 .activePlayer {
   color: #FF4136;
