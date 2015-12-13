@@ -3,7 +3,7 @@ var autoprefixer = require('autoprefixer');
 var precss = require('precss');
 
 module.exports = {
-  entry: path.join(__dirname, '/src/js/main.js'),
+  entry: path.join(__dirname, '/src/js/index.js'),
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
@@ -29,5 +29,6 @@ module.exports = {
   },
   postcss: function () {
     return [autoprefixer, precss];
-  }
+  },
+  devtool: 'source-map'
 };

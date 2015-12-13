@@ -14,9 +14,9 @@ class RingSector extends Component {
     const COUNTERCLOCK = 0;
 
     const xy1 = this.xy(r1, angle1);
-    const arc1 = this.arc(r1, this.xy(r1, angle2), CLOCKWISE);
+    const arc1 = this.arc(r1, this.xy(r1, angle2), COUNTERCLOCK);
     const xy2 = this.xy(r2, angle2);
-    const arc2 = this.arc(r2, this.xy(r2, angle1), COUNTERCLOCK);
+    const arc2 = this.arc(r2, this.xy(r2, angle1), CLOCKWISE);
 
     return `M${xy1} ${arc1} L${xy2} ${arc2} z`;
   }
@@ -36,8 +36,9 @@ class RingSector extends Component {
       this.props.angle1,
       this.props.angle2
     );
+    const onClick = this.props.onClick;
 
-    return <path d={ path } className={ this.props.className } />;
+    return <path d={ path } className={ this.props.className } {...{onClick}} />;
   }
 }
 
@@ -48,6 +49,7 @@ RingSector.propTypes = {
   angle1: PropTypes.number.isRequired,
   angle2: PropTypes.number.isRequired,
   polarCoords: PropTypes.instanceOf(PolarCoords),
+  onClick: PropTypes.func.isRequired,
 };
 
 export default RingSector;

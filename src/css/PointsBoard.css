@@ -1,0 +1,44 @@
+.container {
+  height: 700px;
+  width: 300px;
+  margin: auto;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex-basis: 50%;
+}
+
+.cell {
+  padding: 7px 0;
+}
+
+.header {
+  border-bottom: 3px solid #ddd;
+}
+.header, .sum {
+  .cell {
+    line-height: 26px;
+    height: 26px;
+  }
+}
+
+
+.activePlayer {
+  color: #FF4136;
+}
+
+.sum {
+  border-top: 3px solid #ddd;
+}
+
+.points {
+  height: 620px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PolarCoords from './PolarCoords';
 import RingSector from './RingSector';
 import Point from './Point';
-import style from '../css/sector.css';
+import style from '../../css/sector.css';
 
 class Sector extends Component {
   constructor(props) {
@@ -13,6 +13,9 @@ class Sector extends Component {
   }
   shouldComponentUpdate() {
     return false;
+  }
+  handleThrowDart(points) {
+    this.props.onThrowDart(points);
   }
   render() {
     const SECTOR_ANGLE = 18;
@@ -45,9 +48,9 @@ class Sector extends Component {
     }
 
     return (<g className="sector">
-      <RingSector r1={r2} r2={r5} className={x1ClassName} {...options} />
-      <RingSector r1={r} r2={r2} className={xxClassName} {...options} />
-      <RingSector r1={r3} r2={r4} className={xxClassName} {...options} />
+      <RingSector r1={r2} r2={r5} className={x1ClassName} {...options} onClick={this.handleThrowDart.bind(this, this.props.number)} />
+      <RingSector r1={r} r2={r2} className={xxClassName} {...options} onClick={this.handleThrowDart.bind(this, this.props.number * 2)} />
+      <RingSector r1={r3} r2={r4} className={xxClassName} {...options} onClick={this.handleThrowDart.bind(this, this.props.number * 3)} />
       <Point {...pointOptions} />
     </g>);
   }
@@ -59,6 +62,7 @@ Sector.propTypes = {
   index: PropTypes.number.isRequired,
   number: PropTypes.number.isRequired,
   polarCoords: PropTypes.instanceOf(PolarCoords),
+  onThrowDart: PropTypes.func.isRequired,
 };
 
 export default Sector;
