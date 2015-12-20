@@ -1,24 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { PLAYER_1, PLAYER_2 } from '../constants/players.js';
+import { PLAYER_1, PLAYER_2 } from '../constants/constants.js';
 import style from '../../css/PointsBoard.css';
 import classNames from 'classnames';
 
 class PointsBoard extends Component {
-  getColums() {
-    const points = this.props.points;
-    const chunk = 3;
-    let col1 = [];
-    let col2 = [];
-    for (let i = 0, length = points.length; i < length; i += chunk) {
-      col1 = col1.concat(points.slice(i, i + chunk));
-      i += chunk;
-      col2 = col2.concat(points.slice(i, i + chunk));
-    }
-    return {col1, col2};
-  }
-  sum(col) {
-    return col.reduce((sum, points) => sum + points, 0);
-  }
   renderColumn(col) {
     return (<div className={style.column}>
       {col.map((points, index) => {
@@ -26,34 +11,36 @@ class PointsBoard extends Component {
       })}
     </div>);
   }
-  renderHeader() {
+  renderPlayerLabel(title, name) {
     const player = this.props.player;
-    const classes = [style.column, style.cell];
+    const classes = [style.column, style.cell, {[style.activePlayer]: player === name}];
+    return <div className={classNames(classes)}>{title}</div>;
+  }
+  renderHeader() {
     return (<div className={classNames(style.row, style.header)}>
-      <div className={classNames(classes, {[style.activePlayer]: player === PLAYER_1})}>1-й игрок</div>
-      <div className={classNames(classes, {[style.activePlayer]: player === PLAYER_2})}>2-й игрок</div>
+      {this.renderPlayerLabel('1-й игрок', PLAYER_1)}
+      {this.renderPlayerLabel('2-й игрок', PLAYER_2)}
     </div>);
   }
   render() {
-    const columns = this.getColums();
     return (<div className={style.container}>
         {this.renderHeader()}
         <div className={style.points}>
           <div className={style.row}>
-            {this.renderColumn(columns.col1)}
-            {this.renderColumn(columns.col2)}
+            {this.renderColumn(this.props.result[PLAYER_1].points)}
+            {this.renderColumn(this.props.result[PLAYER_2].points)}
           </div>
         </div>
         <div className={classNames(style.row, style.sum)}>
-          <div className={classNames(style.column, style.cell)}>{this.sum(columns.col1)}</div>
-          <div className={classNames(style.column, style.cell)}>{this.sum(columns.col2)}</div>
+          <div className={classNames(style.column, style.cell)}>{this.props.result[PLAYER_1].score}</div>
+          <div className={classNames(style.column, style.cell)}>{this.props.result[PLAYER_2].score}</div>
         </div>
       </div>);
   }
 }
 
 PointsBoard.propTypes = {
-  points: PropTypes.array.isRequired,
+  result: PropTypes.object.isRequired,
   player: PropTypes.string.isRequired,
 };
 

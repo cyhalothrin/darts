@@ -16,7 +16,7 @@ class DartsApp extends Component {
           <Dartboard onThrowDart={(points) => dispatch(throwDart(points))} />
         </div>
         <div className={grid.col2}>
-          <PointsBoard points={this.props.points} player={this.props.player} />
+          <PointsBoard result={this.props.result} player={this.props.player} />
         </div>
         <ControlPanel undo={() => dispatch(undo())} startNewGame={() => dispatch(startNewGame())} />
       </div>
@@ -25,14 +25,14 @@ class DartsApp extends Component {
 }
 
 DartsApp.propTypes = {
-  points: PropTypes.array.isRequired,
+  result: PropTypes.object.isRequired,
   player: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
 function select(state) {
   return {
-    points: state.points,
+    result: state.result,
     player: state.player,
   };
 }
