@@ -2,3 +2,21 @@ html, body {
   margin: 0;
   user-select: none;
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+}
+
+.offset2 {
+  margin-left: 20%;
+}
+
+.col4 {
+  flex-basis: 40%;
+}
+
+.col2 {
+  flex-basis: 20%;
+}

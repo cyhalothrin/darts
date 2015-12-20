@@ -1,12 +1,13 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, '/src/js/index.js'),
   output: {
-    path: path.join(__dirname, '/dist/'),
-    filename: '[name].js',
+    path: path.join(__dirname, 'dist'),
+    filename: 'js/[name].js',
     publicPath: '/dist/',
     sourceMapFilename: '[file].map'
   },
@@ -22,8 +23,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+        )
       },
       {
         test: /\.svg$/,
@@ -32,7 +35,12 @@ module.exports = {
     ]
   },
   postcss: function () {
-    return [autoprefixer, precss];
+    return [autoprefixer(), precss()];
   },
+  plugins: [
+    new ExtractTextPlugin('css/styles.css',{
+            allChunks: true
+        })
+  ],
   devtool: 'source-map'
 };

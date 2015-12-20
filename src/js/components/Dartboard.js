@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Sector from './Sector';
 import PolarCoords from './PolarCoords';
-import style from '../../css/sector.css';
+import style from '../../css/Sector.css';
 
 class Dartboard extends Component {
   constructor(props) {

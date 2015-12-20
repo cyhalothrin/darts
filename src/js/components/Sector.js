@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PolarCoords from './PolarCoords';
 import RingSector from './RingSector';
 import Point from './Point';
-import style from '../../css/sector.css';
+import style from '../../css/Sector.css';
 
 class Sector extends Component {
   constructor(props) {

@@ -52,6 +52,7 @@ function darts(state = initialState, action) {
   case UNDO:
     return history.length ? history.pop() : state;
   case START_NEW_GAME:
+    history.length = 0;
     return initialState;
   default:
     return state;

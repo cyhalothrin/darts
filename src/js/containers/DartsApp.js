@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { throwDart, undo, startNewGame } from '../actions/actions';
 import Dartboard from '../components/Dartboard';
 import PointsBoard from '../components/PointsBoard';
-import grid from '../../css/grid.css';
+import style from '../../css/global.css';
 import ControlPanel from '../components/ControlPanel';
 
 class DartsApp extends Component {
@@ -11,11 +11,11 @@ class DartsApp extends Component {
     const { dispatch } = this.props;
 
     return (
-      <div className={grid.container}>
-        <div className={[grid.col4, grid.offset2].join(' ')}>
+      <div className={style.container}>
+        <div className={[style.col4, style.offset2].join(' ')}>
           <Dartboard onThrowDart={(points) => dispatch(throwDart(points))} />
         </div>
-        <div className={grid.col2}>
+        <div className={style.col2}>
           <PointsBoard result={this.props.result} player={this.props.player} />
         </div>
         <ControlPanel undo={() => dispatch(undo())} startNewGame={() => dispatch(startNewGame())} />
