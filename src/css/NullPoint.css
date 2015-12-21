@@ -1,0 +1,11 @@
+.label {
+  fill: #eee;
+  font-family: 'Arial';
+  font-size: 70;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  &:hover {
+    fill: #ddd;
+  }
+}

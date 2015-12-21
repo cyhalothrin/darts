@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Sector from './Sector';
 import PolarCoords from './PolarCoords';
+import NullPoint from './NullPoint';
 import style from '../../css/Sector.css';
 
 class Dartboard extends Component {
@@ -29,6 +30,7 @@ class Dartboard extends Component {
         <circle {...centerCoords} r={radius} className={style.board} />
         <circle {...centerCoords} r={0.0857 * radius} className={style.xxOdd} onClick={this.handleThrowDart.bind(this, 25)} />
         <circle {...centerCoords} r={0.0429 * radius} className={style.xxEven} onClick={this.handleThrowDart.bind(this, 50)} />
+
         {sectors.map((number, index) => {
           const startAngle = angle;
           angle += STEP;
@@ -42,6 +44,7 @@ class Dartboard extends Component {
           };
           return <Sector key={number} {...options} />;
         })}
+        <NullPoint onThrowDart={this.handleThrowDart.bind(this, 0)} />
       </g>
     </svg>);
   }
