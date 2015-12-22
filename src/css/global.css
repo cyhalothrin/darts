@@ -9,14 +9,30 @@ html, body {
   min-height: 100%;
 }
 
-.offset2 {
-  margin-left: 20%;
+@media (min-width: 1200px) {
+  .offset1Md {
+    margin-left: 10%;
+  }
+
+  .col6Md {
+    flex-basis: 60%;
+  }
+
+  .col3Md {
+    flex-basis: 30%;
+  }
 }
 
-.col4 {
-  flex-basis: 40%;
-}
+@media (min-width: 1750px) {
+  .offset2Lg {
+    margin-left: 20%;
+  }
 
-.col2 {
-  flex-basis: 20%;
+  .col4Lg {
+    flex-basis: 40%;
+  }
+
+  .col2Lg {
+    flex-basis: 20%;
+  }
 }

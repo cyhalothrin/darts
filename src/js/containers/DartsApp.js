@@ -5,6 +5,7 @@ import Dartboard from '../components/Dartboard';
 import PointsBoard from '../components/PointsBoard';
 import style from '../../css/global.css';
 import ControlPanel from '../components/ControlPanel';
+import classNames from 'classnames';
 
 class DartsApp extends Component {
   render() {
@@ -12,10 +13,10 @@ class DartsApp extends Component {
 
     return (
       <div className={style.container}>
-        <div className={[style.col4, style.offset2].join(' ')}>
+        <div className={classNames([style.col4Lg, style.offset2Lg, style.col6Md, style.offset1Md])}>
           <Dartboard onThrowDart={(points) => dispatch(throwDart(points))} />
         </div>
-        <div className={style.col2}>
+        <div className={classNames(style.col2Lg, style.col3Md)}>
           <PointsBoard result={this.props.result} player={this.props.player} />
         </div>
         <ControlPanel undo={() => dispatch(undo())} startNewGame={() => dispatch(startNewGame())} />
